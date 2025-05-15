@@ -1,0 +1,351 @@
+#include <windows.h>
+#include <iostream>
+#include <string>
+#include <ctime>
+#include <fstream>
+#include <sstream>
+#include <cstdlib>
+#include <vector>
+#include <mmsystem.h>
+#include <lmcons.h>
+
+#pragma comment(lib, "winmm.lib")
+
+using namespace std;
+
+template <typename T>
+string num_to_string(T number) {
+    ostringstream oss;
+    oss << number;
+    return oss.str();
+}
+
+string escape_query_param(const string& query) {
+    string escaped_query = query;
+    for (size_t i = 0; i < escaped_query.length(); ++i) {
+        if (escaped_query[i] == ' ') {
+            escaped_query[i] = '+';
+        }
+    }
+    return escaped_query;
+}
+
+class Assistant {
+private:
+    string username;
+
+public:
+    Assistant() {
+        char name_buffer[UNLEN + 1];
+        DWORD size = UNLEN + 1;
+        if (GetUserNameA(name_buffer, &size)) {
+            username = name_buffer;
+        } else {
+            username = "User";
+        }
+    }
+
+    void speak(const string &text) {
+        string command = "espeak \"" + text + "\"";
+        system(command.c_str());
+    }
+
+    void typing(const string &text, int speed = 50) {
+        speak(text);
+        cout << "\n";
+        for (size_t i = 0; i < text.length(); ++i) {
+            cout << text[i];
+            Sleep(speed);
+        }
+        cout << "\n";
+    }
+
+    string getUser() const { return username; }
+};
+
+Assistant assistant;
+
+void displayTime() {
+    time_t now = time(0);
+    tm *ltm = localtime(&now);
+    cout << "Time: " << (5 + ltm->tm_hour) % 24 << ":"
+         << (30 + ltm->tm_min) % 60 << ":" << ltm->tm_sec << endl;
+}
+
+void showWeather() {
+    string city;
+    assistant.typing("Which city's weather would you like to check?");
+    getline(cin, city);
+
+    string cmd = "curl -s \"wttr.in/" + escape_query_param(city) + "?format=%C+%t\"";
+    FILE* pipe = _popen(cmd.c_str(), "r");
+    if (!pipe) {
+        assistant.typing("Failed to get weather data. Is curl installed and in PATH?");
+        return;
+    }
+
+    char buffer[128];
+    string result;
+    while (!feof(pipe)) {
+        if (fgets(buffer, 128, pipe) != NULL)
+            result += buffer;
+    }
+    _pclose(pipe);
+
+    if (result.empty() || result.find("Unknown location") != string::npos || result.find("ERROR") != string::npos) {
+        result = "Weather service unavailable or city not found.";
+    }
+    assistant.typing("Current weather in " + city + ": " + result);
+}
+
+void systemStatus() {
+    MEMORYSTATUSEX memInfo;
+    memInfo.dwLength = sizeof(memInfo);
+    GlobalMemoryStatusEx(&memInfo);
+
+    SYSTEM_POWER_STATUS powerStatus;
+    GetSystemPowerStatus(&powerStatus);
+
+    string status = "System Status:\n";
+    status += "- Memory: " + num_to_string(memInfo.dwMemoryLoad) + "% used\n";
+    if (powerStatus.BatteryFlag != 255 && powerStatus.BatteryFlag != 128) {
+         status += "- Battery: " + num_to_string(static_cast<int>(powerStatus.BatteryLifePercent)) + "%\n";
+    } else if (powerStatus.ACLineStatus == 1) {
+        status += "- Battery: On AC Power\n";
+    } else {
+        status += "- Battery: Status N/A\n";
+    }
+
+    ULARGE_INTEGER freeBytesAvailableToCaller, totalNumberOfBytes, totalNumberOfFreeBytes;
+    if (GetDiskFreeSpaceEx(NULL, &freeBytesAvailableToCaller, &totalNumberOfBytes, &totalNumberOfFreeBytes)) {
+        status += "- Disk Space: " + num_to_string(totalNumberOfFreeBytes.QuadPart / (1024 * 1024)) + "MB free";
+    } else {
+        status += "- Disk Space: Unable to retrieve";
+    }
+
+    assistant.typing(status);
+}
+
+void calculator() {
+    assistant.typing("Enter expression (e.g., 2 + 3 or 4 * 5):");
+    string expr_str;
+    getline(cin, expr_str);
+
+    istringstream iss(expr_str);
+    double a, b;
+    char op;
+    iss >> a >> op >> b;
+
+    if (iss.fail()) {
+        assistant.typing("Invalid expression format.");
+        return;
+    }
+
+    double result_val;
+    switch (op) {
+        case '+': result_val = a + b; break;
+        case '-': result_val = a - b; break;
+        case '*': result_val = a * b; break;
+        case '/':
+            if (b != 0) {
+                result_val = a / b;
+            } else {
+                assistant.typing("Error: Division by zero.");
+                return;
+            }
+            break;
+        default:
+            assistant.typing("Invalid operator.");
+            return;
+    }
+
+    assistant.typing("Result: " + num_to_string(result_val));
+}
+
+void fileExplorer() {
+    assistant.typing("Opening file explorer...");
+    ShellExecute(NULL, "open", "explorer", ".", NULL, SW_SHOWNORMAL);
+}
+
+void entertainment() {
+    vector<string> jokes;
+    jokes.push_back("Why don't scientists trust atoms? Because they make up everything!");
+    jokes.push_back("What did one wall say to the other wall? I'll meet you at the corner!");
+    jokes.push_back("Why did the scarecrow win an award? Because he was outstanding in his field!");
+
+    vector<string> quotes;
+    quotes.push_back("The only way to do great work is to love what you do. - Steve Jobs");
+    quotes.push_back("Innovation distinguishes between a leader and a follower. - Steve Jobs");
+    quotes.push_back("The future belongs to those who believe in the beauty of their dreams. - Eleanor Roosevelt");
+
+    if (jokes.empty() || quotes.empty()) {
+        assistant.typing("Entertainment content is not available.");
+        return;
+    }
+    
+    srand(static_cast<unsigned int>(time(0)));
+    int choice = rand() % 2;
+
+    if (choice == 0) {
+        assistant.typing(jokes[rand() % jokes.size()]);
+    } else {
+        assistant.typing(quotes[rand() % quotes.size()]);
+    }
+}
+
+void setTimer() {
+    assistant.typing("Enter timer duration in minutes:");
+    int minutes;
+    cin >> minutes;
+    cin.ignore(10000, '\n');
+
+    if (cin.fail() || minutes <= 0) {
+        assistant.typing("Invalid duration. Please enter a positive number of minutes.");
+        cin.clear();
+        cin.ignore(10000, '\n');
+        return;
+    }
+
+    assistant.typing("Timer set for " + num_to_string(minutes) + " minutes. I'll notify you when time's up!");
+    Sleep(minutes * 60 * 1000);
+    PlaySound(TEXT("SystemExclamation"), NULL, SND_ALIAS | SND_ASYNC);
+    assistant.typing("Timer completed! Time's up!");
+}
+
+void manageReminders() {
+    assistant.typing("1. Add reminder\n2. View reminders\nChoose option:");
+    int choice;
+    cin >> choice;
+    cin.ignore(10000, '\n');
+
+    if (cin.fail()) {
+        assistant.typing("Invalid choice.");
+        cin.clear();
+        cin.ignore(10000, '\n');
+        return;
+    }
+
+    if (choice == 1) {
+        assistant.typing("Enter your reminder:");
+        string reminder;
+        getline(cin, reminder);
+
+        ofstream file("reminders.txt", ios::app);
+        if (file.is_open()) {
+            time_t now = time(0);
+            char* dt = ctime(&now);
+            string time_str = dt;
+            if (!time_str.empty() && time_str[time_str.length()-1] == '\n') {
+                time_str.erase(time_str.length()-1);
+            }
+            file << time_str << " - " << reminder << "\n\n";
+            file.close();
+            assistant.typing("Reminder added successfully!");
+        } else {
+            assistant.typing("Error: Could not open reminders file for writing.");
+        }
+    } else if (choice == 2) {
+        ifstream file("reminders.txt");
+        if (file.is_open()) {
+            stringstream buffer;
+            buffer << file.rdbuf();
+            string content = buffer.str();
+            file.close();
+
+            if (content.empty()) {
+                assistant.typing("No reminders found!");
+            } else {
+                assistant.typing("Your reminders:\n" + content);
+            }
+        } else {
+            assistant.typing("No reminders found or could not open file!");
+        }
+    } else {
+        assistant.typing("Invalid option selected.");
+    }
+}
+
+void playMusic() {
+    assistant.typing("Enter song name to play:");
+    string song;
+    getline(cin, song);
+
+    if (song.empty()) {
+        assistant.typing("No song name entered.");
+        return;
+    }
+    string url = "https://www.youtube.com/results?search_query=" + escape_query_param(song);
+    assistant.typing("Searching for " + song + " on YouTube...");
+    ShellExecute(NULL, "open", url.c_str(), NULL, NULL, SW_SHOWNORMAL);
+}
+
+void showHelp() {
+    string helpText =
+        "\nAvailable Commands:\n"
+        "- time             : Show current time\n"
+        "- weather          : Get weather information\n"
+        "- status           : System status (battery, memory, disk)\n"
+        "- calculator       : Basic arithmetic operations\n"
+        "- files            : Open file explorer\n"
+        "- entertain me     : Tell a joke or quote\n"
+        "- timer            : Set a countdown timer\n"
+        "- reminders        : Manage your reminders\n"
+        "- play music       : Search and play songs on YouTube\n"
+        "- help             : Show available commands\n"
+        "- exit             : Quit the program\n";
+    assistant.typing(helpText, 10);
+}
+
+int main() {
+    system("cls");
+    assistant.typing("Initializing Virtual Assistant Vibhor...", 25);
+
+    string password_attempt;
+    do {
+        assistant.typing("Enter authorization password:");
+        getline(cin, password_attempt);
+
+        if (password_attempt != "Vibhor123") {
+            assistant.typing("Incorrect password. Please try again.");
+        }
+    } while (password_attempt != "Vibhor123");
+
+    assistant.typing("Authentication successful! Welcome Vibhor!");
+
+    string command;
+    while (true) {
+        assistant.typing("\nEnter command (type 'help' for options):");
+        cout << "> ";
+        getline(cin, command);
+
+        if (command == "exit" || command == "bye") {
+            assistant.typing("Goodbye Vibhor! Have a great day!");
+            break;
+        } else if (command == "time") {
+            displayTime();
+        } else if (command == "weather") {
+            showWeather();
+        } else if (command == "status") {
+            systemStatus();
+        } else if (command == "calculator") {
+            calculator();
+        } else if (command == "files") {
+            fileExplorer();
+        } else if (command == "entertain me") {
+            entertainment();
+        } else if (command == "timer") {
+            setTimer();
+        } else if (command == "reminders") {
+            manageReminders();
+        } else if (command == "play music") {
+            playMusic();
+        } else if (command == "help") {
+            showHelp();
+        } else {
+            assistant.typing("Command not recognized. Type 'help' for available options.");
+        }
+    }
+
+    return 0;
+}
+
