@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="font.css" />
+    <link rel="stylesheet" href="output.css" />
+    <link rel="stylesheet" href="style.css" />
+    <!-- Link Swiper's CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+
+    <!-- Demo styles -->
+    <style>
+      .swiper {
+        width: 100%;
+        height: 100%;
+      }
+
+      .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .swiper-button-next,
+      .swiper-button-prev {
+        color: #1788ae;
+      }
+
+      .swiper-pagination-bullet {
+        background-color: #23b9eb;
+      }
+    </style>
+    <script src="./matter.js" defer></script>
+  </head>
+  <body class="bg-[#111] text-white font-['Nunito']">
+    <section class="flex flex-col justify-between h-screen">
+      <header
+        class="z-10 pointer-events-none flex items-center justify-between w-full px-4 mt-4 max-w-screen-xl mx-auto"
+      >
+      <svg
+  width="70"
+  height="70"
+  viewBox="0 0 406 368"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <!-- Main V Path -->
+  <path
+    d="M100 50 L203 300 L306 50"
+    stroke="url(#mainGradient)"
+    stroke-width="16"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    filter="url(#shadow)"
+  />
+  
+  <!-- Inner V Path for Depth -->
+  <path
+    d="M115 70 L203 290 L291 70"
+    stroke="url(#innerGradient)"
+    stroke-width="10"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    opacity="0.7"
+  />
+  
+  <!-- Lightbulb -->
+  <g transform="translate(203,100)">
+    <circle cx="0" cy="0" r="50" fill="url(#bulbGradient)" /> <!-- Increased radius from 30 to 45 -->
+    <rect x="-5" y="30" width="10" height="40" fill="url(#baseGradient)" />
+    <circle cx="0" cy="90" r="20" fill="url(#screwGradient)" />
+  </g>
+  
+
+  <defs>
+    <!-- Main Gradient -->
+    <linearGradient id="mainGradient" x1="100" y1="50" x2="306" y2="300" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1595B6" />
+      <stop offset="1" stop-color="#1F2667" />
+    </linearGradient>
+
+    <!-- Inner Gradient for Depth -->
+    <linearGradient id="innerGradient" x1="203" y1="70" x2="203" y2="290" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1595B6" />
+      <stop offset="1" stop-color="#1F2667" stop-opacity="0.5" />
+    </linearGradient>
+
+    <!-- Bulb Gradient -->
+    <linearGradient id="bulbGradient" x1="-30" y1="0" x2="30" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFD700" />
+      <stop offset="1" stop-color="#FFA500" />
+    </linearGradient>
+
+    <!-- Base Gradient -->
+    <linearGradient id="baseGradient" x1="-5" y1="30" x2="5" y2="70" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#555" />
+      <stop offset="1" stop-color="#333" />
+    </linearGradient>
+
+    <!-- Screw Gradient -->
+    <linearGradient id="screwGradient" x1="-10" y1="90" x2="10" y2="90" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#999" />
+      <stop offset="1" stop-color="#777" />
+    </linearGradient>
+
+    <!-- Shadow Effect for Depth -->
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="rgba(31, 38, 103, 0.5)" />
+    </filter>
+  </defs>
+</svg>
+
+    
+        <div class="flex gap-4 pointer-events-auto">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-sun"
+          >
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="hidden"
+          >
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <a href="tel:7003942471"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-phone"
+            >
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+              ></path></svg
+          ></a>
+          <a
+            href="https://wa.me/7003942471?text=Hi, How are you?"
+            target="_blank"
+          >
+            <svg
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fab"
+              data-icon="whatsapp"
+              class="svg-inline--fa fa-whatsapp fa-w-14"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 448 512"
+            >
+              <path
+                fill="currentColor"
+                d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"
+              ></path>
+            </svg>
+          </a>
+        </div>
+      </header>
+      <div class="absolute inset-0 hidden md:block" id="wrapper-canvas"></div>
+      <div class="flex -mt-10 relative">
+        <div class="w-full px-4 max-w-screen-xl mx-auto">
+          <svg
+          viewBox="0 0 406 368"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          class="pointer-events-none absolute top-0 left-1/2 -translate-y-[80px] sm:-translate-y-[180px] -translate-x-1/2 w-[300px] sm:w-[400px] md:w-[650px]"
+        >
+
+
+        </svg>
+
+        
+        <div class="relative ml-4 md:ml-12">
+          <h1 class="pointer-events-none text-4xl md:text-[64px] font-['Spartan'] mr-12 name-container">
+            <span class="name">I'm Vibhor Roy</span>
+            <style>
+              .name-container {
+                position: relative;
+                height: 2.5rem; /* Adjust based on text height */
+                overflow: visible;
+                width: 380px; /* Set a fixed width based on your needs */
+              }
+              .name {
+                position: absolute;
+                width: 100%; /* Full width of the container */
+                text-align: center;
+                font-size: 2.1rem; /* Adjust based on your design */
+                white-space: nowrap;
+                overflow: hidden;
+                border-right: 2px solid transparent;
+                animation: typeWriterEffect 4s steps(20) infinite, blinkCursor 0.5s step-end infinite;
+              }
+      
+              @keyframes typeWriterEffect {
+                0% {
+                  width: 0;
+                }
+                50% {
+                  width: 100%;
+                }
+                100% {
+                  width: 0;
+                }
+              }
+      
+              @keyframes blinkCursor {
+                0%, 100% {
+                  border-color: transparent;
+                }
+                50% {
+                  border-color: black;
+                }
+              }
+      
+              .about-us {
+                display: none;
+                position: absolute;
+                top: 120%; /* Adjust as needed */
+                left: 0;
+                width: 100%; /* Make it responsive */
+                padding: 20px;
+                background-color: #1f2667; /* Set a blue background */
+                color: white; /* White text */
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                border-radius: 8px;
+                z-index: 10;
+                transition: all 0.3s ease-in-out;
+              }
+      
+              .about-us.active {
+                display: block;
+              }
+      
+              .about-us h2 {
+                margin-top: 0;
+                color: #ffffff; /* White color for the heading */
+              }
+      
+              .about-us p {
+                margin: 10px 0;
+                color: #ffffff; /* White color for paragraphs */
+              }
+      
+              .profession-container {
+                position: relative;
+                height: 2.5rem; /* Adjust based on text height */
+                overflow: hidden;
+                width: 300px; /* Set a fixed width */
+                text-align: left; /* Align text to the left */
+              }
+              
+              .profession {
+                position: absolute;
+                width: 100%;
+                text-align: left; /* Ensure individual items align left */
+                font-style: italic;
+                font-size: 1.5rem; /* Adjust based on your design */
+                animation: loopProfession 6s infinite;
+                left: 0; /* Fine-tune position */
+              }
+              
+      
+              .profession:nth-child(1) {
+                animation-delay: 0s;
+              }
+      
+              .profession:nth-child(2) {
+                animation-delay: 2s;
+              }
+      
+              .profession:nth-child(3) {
+                animation-delay: 4s;
+              }
+      
+              @keyframes loopProfession {
+                0%, 33% {
+                  opacity: 1;
+                }
+                34%, 100% {
+                  opacity: 0;
+                }
+              }
+      
+            </style>
+          </h1>
+      
+          <p class="pointer-events-none font-['Merriweather'] italic my-4 md:my-8 profession-container">
+            <span class="profession">Engineer</span>
+            <span class="profession">Developer</span>
+            <span class="profession">Innovator</span>
+          </p>
+      
+            <button
+            id="aboutUsButton"
+            class="bg-[#4595eb] py-2 px-5 rounded font-extrabold bg-gradient-to-l from-[#1595b6] to-[#1f2667e6] relative hover:scale-110 ease-in-out duration-100 group"
+          >
+            About Me
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              version="1.1"
+              width="44"
+              height="44"
+              viewBox="0 0 100 100"
+              class="absolute top-1/2 -translate-y-1/2 -right-7 group-hover:-right-8 ease-in-out duration-100"
+            >
+              <g transform="translate(0,-952.36218)">
+                <path
+                  d="m 88.999835,1002.3621 c 0,-0.4628 -0.2799,-1.0773 -0.5639,-1.3755 l -15.9997,-17.00026 c -0.747,-0.7723 -1.9572,-0.8618 -2.8281,-0.078 -0.7786,0.7007 -0.798,2.0673 -0.078,2.8282 l 12.8435,13.62516 -69.37347,0 c -1.1046,0 -2,0.8954 -2,2 0,1.1046 0.8954,2.0001 2,2.0001 l 69.37347,0 -12.8435,13.6252 c -0.7199,0.7608 -0.6688,2.0938 0.078,2.8281 0.7885,0.7752 2.0925,0.7062 2.8281,-0.078 l 15.9997,-17.0002 c 0.4701,-0.4611 0.556,-0.9052 0.5639,-1.3748 z"
+                  fill="#fff"
+                  fill-opacity="1"
+                  stroke="white"
+                  stroke-width="2"
+                  marker="none"
+                  visibility="visible"
+                  display="inline"
+                  overflow="visible"
+                />
+              </g>
+            </svg>
+          </button>
+          <div id="aboutUsSection" class="about-us">
+           <p>I am Vibhor Roy, a sixth-semester B.Tech student at BVDUCOEP Engineering College, Pune, specializing in Computer and Electrical Engineering. I have a deep interest in programming, data science, and combining both software and hardware to create practical solutions.</p>
+
+<p>My technical skill set includes C, C++, Python, HTML, CSS, and data science libraries such as NumPy, Pandas, and Matplotlib. I have also worked extensively on Python-based data science projects involving Exploratory Data Analysis (EDA) using real-world datasets.</p>
+
+<p>My academic journey began at Takshashila Vidyapith, Deoghar, Jharkhand, where I secured 94% in my 10th grade. I completed my 12th grade at DAV Public School, Patna, Bihar, scoring 89%. I currently maintain a CGPA of 8.85 up to the sixth semester of my engineering studies.</p>
+
+<p>I have developed several projects, including a C++-based virtual assistant, a library management system integrating SQL and C++, web-based portfolio designs using HTML and CSS, and microcontroller-based automation using PIC and Arduino platforms.</p>
+
+<p>Currently, I am focused on deepening my knowledge in data science, machine learning, and Python-based analytics. I aim to build intelligent systems that derive insights from data while continuing to explore the synergy between hardware and software development.</p>
+
+        </div>
+      
+        <script>
+          document.getElementById('aboutUsButton').addEventListener('click', function() {
+            var aboutUsSection = document.getElementById('aboutUsSection');
+            aboutUsSection.classList.toggle('active');
+          });
+        </script>
+          </div>
+        </div>
+
+        <ul class="ml-auto space-y-6 text-[#b0b2c3] absolute right-8">
+          <li>
+            <a
+              href="https://www.linkedin.com/in/vibhor-roy-8aa777214/"
+              target="_blank"
+            >
+              <svg
+                class="w-7 hover:text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"
+              >
+                <path
+                  fill="currentColor"
+                  d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z"
+                />
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://x.com/RahulKu60935595" target="_blank">
+              <svg
+                class="w-7 hover:text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+              >
+                <path
+                  fill="currentColor"
+                  d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"
+                />
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com/vibhor4893/">
+              <svg
+                class="w-7 hover:text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"
+              >
+                <path
+                  fill="currentColor"
+                  d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"
+                />
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="mailto:vibhorriy60@gmail.com" target="_blank">
+              <svg
+                class="w-7 hover:text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+              >
+                <path
+                  fill="currentColor"
+                  d="M64 112c-8.8 0-16 7.2-16 16v22.1L220.5 291.7c20.7 17 50.4 17 71.1 0L464 150.1V128c0-8.8-7.2-16-16-16H64zM48 212.2V384c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V212.2L322 328.8c-38.4 31.5-93.7 31.5-132 0L48 212.2zM0 128C0 92.7 28.7 64 64 64H448c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128z"
+                />
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.youtube.com/channel/UCbkkVfL7GaM_oGoOwbZrj3Q/community?pvf=CAI%253D">
+              <svg
+                class="w-7 hover:text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 576 512"
+                fill="currentColor"
+              >
+                <path
+                  d="M549.7 124.1c-6.3-23.7-24.8-42.3-48.3-48.6C458.8 64 288 64 288 64S117.2 64 74.6 75.5c-23.5 6.3-42 24.9-48.3 48.6-11.4 42.9-11.4 132.3-11.4 132.3s0 89.4 11.4 132.3c6.3 23.7 24.8 41.5 48.3 47.8C117.2 448 288 448 288 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zm-317.5 213.5V175.2l142.7 81.2-142.7 81.2z"
+                />
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div
+        class="relative self-center after:content-[''] after:absolute after:w-[2px] after:h-5 after:bg-[#444] after:left-1/2 after:-translate-x-1/2 after:top-[100px]"
+      >
+      
+      <!-- Latest Works Button -->
+<button
+id="latestWorksButton"
+class="bg-[#4595eb] py-2 px-5 rounded font-extrabold bg-gradient-to-l from-[#1595b6] to-[#1f2667e6] relative hover:scale-110 ease-in-out duration-100 group mb-20"
+>
+Latest Works
+
+<svg
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:cc="http://creativecommons.org/ns#"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+  xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+  version="1.1"
+  x="0px"
+  y="0px"
+  width="44"
+  height="44"
+  viewBox="0 0 100 100"
+  class="absolute rotate-90 left-1/2 -translate-x-1/2 top-11 group-hover:top-12 ease-in-out duration-100"
+>
+  <g transform="translate(0,-952.36218)">
+    <path
+      style="
+        text-indent: 0;
+        text-transform: none;
+        direction: ltr;
+        block-progression: tb;
+        baseline-shift: baseline;
+        color: #000000;
+        enable-background: accumulate;
+      "
+      d="m 88.999835,1002.3621 c 0,-0.4628 -0.2799,-1.0773 -0.5639,-1.3755 l -15.9997,-17.00026 c -0.747,-0.7723 -1.9572,-0.8618 -2.8281,-0.078 -0.7786,0.7007 -0.798,2.0673 -0.078,2.8282 l 12.8435,13.62516 -69.37347,0 c -1.1046,0 -2,0.8954 -2,2 0,1.1046 0.8954,2.0001 2,2.0001 l 69.37347,0 -12.8435,13.6252 c -0.7199,0.7608 -0.6688,2.0938 0.078,2.8281 0.7885,0.7752 2.0925,0.7062 2.8281,-0.078 l 15.9997,-17.0002 c 0.4701,-0.4611 0.556,-0.9052 0.5639,-1.3748 z"
+      fill="#fff"
+      fill-opacity="1"
+      stroke="white"
+      stroke-width="2"
+      marker="none"
+      visibility="visible"
+      display="inline"
+      overflow="visible"
+    />
+  </g>
+</svg>
+</button>
+
+<script>
+document.getElementById('latestWorksButton').addEventListener('click', function() {
+window.scrollBy({ 
+  top: 600,  // Adjust this value to control how far down the page scrolls
+  behavior: 'smooth' 
+});
+});
+</script>
+
+
+      </div>
+    </section>
+    <section class="max-w-screen-xl mx-auto px-4 relative pb-8 sm:pb-16">
+      <h2
+        class="text-3xl sm:text-[40px] bg-[#111] relative z-10 font-bold px-4 py-2 w-max mx-auto text-center text-[#1788ae] sm:border-b-2 border-[#1788ae]"
+      >
+        My Projects
+      </h2>
+      <div
+        class="flex flex-col sm:flex-row gap-4 mt-8 sm:gap-[80px] items-center sm:mt-20 relative"
+      >
+        <div
+          class="h-[1px] left-1/4 right-1/2 bg-[#1788ae] absolute top-1/2 hidden sm:block"
+        ></div>
+        <div
+          class="w-4 h-4 rounded-full border-[3px] border-[#459bd5] absolute left-1/2 -translate-x-1/2 bg-[#111] z-10 hover:scale-110 ease-in-out duration-100 hidden sm:block"
+        ></div>
+        <a
+          href="./DBMS.pdf"
+          class="flex w-full relative justify-center sm:justify-start"
+          target="_blank"
+        >
+          <div
+            class="flex flex-col items-center relative group sm:hover:scale-105 ease-in-out duration-200"
+          >
+            <img
+              class="max-w-[400px] w-full mr-auto relative z-10 drop-shadow-[0_0px_60px_rgba(59,130,246,0.6)]"
+              src="./Sql.jpeg"
+              alt=""
+            />
+            <span
+              class="flex group-hover:-top-14 ease-jump duration-200 bg-[#459bd5] sm:absolute left-1/2 sm:-translate-x-1/2 top-5 px-2 py-1 text-sm sm:text-base mt-2 rounded w-max items-center gap-1 after:hidden sm:after:block after:w-4 after:h-4 after:bg-inherit after:absolute after:left-1/2 after:-translate-x-1/2 after:rotate-45 after:-bottom-2"
+              >Download Report
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-external-link"
+              >
+                <path
+                  d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                ></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </span>
+          </div>
+        </a>
+
+        <div class="w-full">
+          <h3 class="text-[#459bd5] font-bold text-2xl md:text-4xl">
+            SQL Database Integration With C++
+          </h3>
+          <span class="text-[#459bd5] text-base md:text-lg"
+            >(Database Management System Project)</span
+          >
+          <p class="text-justify text-sm md:text-base mt-2">
+            Overview of my project: This project demonstrates the integration of SQL databases with C++ to create a robust library management system. It emphasizes structured data handling, secure transactions, and real-time data retrieval, combining the power of SQL with C++ logic for efficient backend operations.
+          </p>
+
+          <ul class="flex flex-wrap gap-2 mt-2">
+            <li
+              class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base"
+            >
+            #CplusplusWithSQL
+            </li>
+            <li
+              class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base"
+            >
+            #SQLIntegration
+            </li>
+            <li
+              class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base"
+            >
+            #SmartLibrarySystem
+            </li>
+            <li
+              class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base"
+            >
+            #QueryOptimization
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div
+        class="flex flex-col sm:flex-row gap-4 mt-12 sm:gap-[80px] items-center sm:mt-20 relative"
+      >
+        <div class="order-2 sm:order-1 w-full">
+          <h3 class="text-[#ffe578] font-bold text-2xl md:text-4xl">
+            Exploratory Data Analysis of Supermarket Sales Dataset
+          </h3>
+          <span class="text-[#ffe578] text-base md:text-lg"
+            >(Data Science Portfolio Project)</span
+          >
+          <p class="text-justify text-sm md:text-base mt-2">
+            This project presents a comprehensive Exploratory Data Analysis (EDA) on a real-world supermarket sales dataset. Using Python libraries like Pandas, Matplotlib, Seaborn, Calmap, and Pandas Profiling, I performed data cleaning, feature engineering, visual insights generation, and statistical analysis.
+          </p>
+
+          <ul class="flex flex-wrap gap-2 mt-2">
+            <li
+              class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base"
+            >
+            #SupermarketEDA
+            </li>
+            <li
+              class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base"
+            >  #DataVisualization
+            </li>
+            <li
+              class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base"
+            >
+           #PythonProjects
+            </li>
+            <li
+              class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base"
+            >
+           #BusinessAnalytics
+
+            </li>
+          </ul>
+        </div>
+        <div
+          class="h-[1px] left-1/2 right-1/4 bg-[#1788ae] absolute top-1/2 hidden sm:block"
+        ></div>
+        <div
+          class="w-4 h-4 rounded-full border-[3px] border-[#ffe578] absolute left-1/2 -translate-x-1/2 bg-[#111] z-10 hover:scale-110 ease-in-out duration-100 hidden sm:block"
+        ></div>
+        <a
+          href="https://github.com/VibhorRoy007/My_Projects/tree/main/SupermarketSalesEDA/code"
+          class="order-1 sm:order-2 flex w-full relative justify-center sm:justify-start"
+          target="_blank"
+        >
+          <div
+            class="flex flex-col items-center relative group sm:hover:scale-105 ease-in-out duration-200 sm:ml-auto"
+          >
+            <img
+              class="max-w-[400px] w-full relative z-10 drop-shadow-[0_0px_60px_rgba(59,130,246,0.6)]"
+              src="./2.jpeg"
+              alt=""
+            />
+            <span
+              class="flex group-hover:-top-14 ease-jump duration-200 text-black bg-[#ffe578] sm:absolute left-1/2 sm:-translate-x-1/2 top-5 px-2 py-1 text-sm sm:text-base mt-2 rounded w-max items-center gap-1 after:hidden sm:after:block after:w-4 after:h-4 after:bg-inherit after:absolute after:left-1/2 after:-translate-x-1/2 after:rotate-45 after:-bottom-2"
+              >Click Here
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-external-link"
+              >
+                <path
+                  d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                ></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </span>
+          </div>
+        </a>
+      </div>
+
+
+      
+      <div
+        class="flex flex-col sm:flex-row gap-4 mt-12 sm:gap-[80px] items-center sm:mt-20 relative"
+      >
+        <div
+          class="h-[1px] left-1/4 right-1/2 bg-[#1788ae] absolute top-1/2 hidden sm:block"
+        ></div>
+        <div
+          class="w-4 h-4 rounded-full border-[3px] border-[#fc815c] absolute left-1/2 -translate-x-1/2 bg-[#111] z-10 hover:scale-110 ease-in-out duration-100 hidden sm:block"
+        ></div>
+        <a
+          href="https://github.com/VibhorRoy007/My_Projects/tree/main/Data_Anaysis"
+          class="flex w-full relative justify-center sm:justify-start"
+          target="_blank"
+        >
+          <div
+            class="flex flex-col items-center relative group hover:scale-105 ease-in-out sm:mr-auto duration-200"
+          >
+            <img
+              class="max-w-[400px] w-full mr-auto relative z-10 drop-shadow-[0_0px_60px_rgba(59,130,246,0.6)]"
+              src="./3.jpeg"
+              alt=""
+            />
+            <span
+              class="flex group-hover:-top-14 ease-jump duration-200 bg-[#fc815c] sm:absolute left-1/2 sm:-translate-x-1/2 top-5 px-2 py-1 text-sm sm:text-base mt-2 rounded w-max items-center gap-1 after:hidden sm:after:block after:w-4 after:h-4 after:bg-inherit after:absolute after:left-1/2 after:-translate-x-1/2 after:rotate-45 after:-bottom-2"
+              >Click Here
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-external-link"
+              >
+                <path
+                  d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                ></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </span>
+          </div>
+        </a>
+
+        <div class="w-full">
+          <h3 class="text-[#fc815c] font-bold text-2xl md:text-4xl">
+             Statistical Analysis and Consumer Behavior Study on Supermarket Sales Data
+          </h3>
+          <span class="text-[#fc815c] text-base md:text-lg"
+            >(Data Science Portfolio Project)</span
+          >
+          <p class="text-justify text-sm md:text-base mt-2">
+            This project transforms raw supermarket transaction data into actionable business intelligence using a statistical analysis lens. Going beyond exploratory charts, I dove into hypothesis testing, multi-dimensional comparisons, and time-series behavior to uncover hidden customer insights.
+    </p>
+
+          <ul class="flex flex-wrap gap-2 mt-2">
+            <li
+              class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base"
+            >
+            #SupermarketSales
+            </li>
+            <li
+              class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base"
+            >
+            #EDA
+            </li>
+            <li
+              class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base"
+            >
+            #ConsumerBehavior
+            </li>
+            <li
+              class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base"
+            >
+            #PythonForDataScience
+            </li>
+            <li
+              class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base"
+            >
+            #CustomerInsights
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div
+    class="flex flex-col sm:flex-row gap-4 mt-8 sm:gap-[80px] items-center sm:mt-20 relative"
+  >
+    <div
+      class="h-[1px] left-1/4 right-1/2 bg-[#1788ae] absolute top-1/2 hidden sm:block"
+    ></div>
+    <div
+      class="w-4 h-4 rounded-full border-[3px] border-[#459bd5] absolute left-1/2 -translate-x-1/2 bg-[#111] z-10 hover:scale-110 ease-in-out duration-100 hidden sm:block"
+    ></div>
+    <a
+      href="https://github.com/VibhorRoy007/My_Projects/tree/main/Virtual_Assistant"
+      class="flex w-full relative justify-center sm:justify-start"
+      target="_blank"
+    >
+      <div
+        class="flex flex-col items-center relative group sm:hover:scale-105 ease-in-out duration-200"
+      >
+        <img
+          class="max-w-[400px] w-full mr-auto relative z-10 drop-shadow-[0_0px_60px_rgba(59,130,246,0.6)]"
+          src="./4.jpeg"
+          alt=""
+        />
+        <span
+          class="flex group-hover:-top-14 ease-jump duration-200 bg-[#459bd5] sm:absolute left-1/2 sm:-translate-x-1/2 top-5 px-2 py-1 text-sm sm:text-base mt-2 rounded w-max items-center gap-1 after:hidden sm:after:block after:w-4 after:h-4 after:bg-inherit after:absolute after:left-1/2 after:-translate-x-1/2 after:rotate-45 after:-bottom-2"
+          >Virtual Assistant
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-external-link"
+          >
+            <path
+              d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+            ></path>
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <line x1="10" y1="14" x2="21" y2="3"></line>
+          </svg>
+        </span>
+      </div>
+    </a>
+
+    <div class="w-full">
+      <h3 class="text-[#459bd5] font-bold text-2xl md:text-4xl">
+        C++ Assistant
+      </h3>
+      <span class="text-[#459bd5] text-base md:text-lg"
+        >((Showcasing Skills and Creativity))</span
+      >
+      <p class="text-justify text-sm md:text-base mt-2">
+        A feature-rich C++ Virtual Assistant for Windows that interacts via voice and text commands. Named "Jarvis", this assistant performs tasks like showing time, fetching weather data, system status checks, setting reminders, telling jokes, playing music, and more — all within a terminal interface. It uses espeak for TTS, curl for weather, and standard Windows libraries for integration.
+
+   </p><ul class="flex flex-wrap gap-2 mt-2">
+        <li
+          class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base"
+        >
+        #CppProjects
+        </li>
+        <li
+          class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base"
+        >
+        #DevLife
+        </li>
+        <li
+          class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base"
+        >
+        #VirtualAssistant
+        </li>
+        <li
+          class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base"
+        >
+        #CodeNewbie
+        </li>
+         <li
+          class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base"
+        >
+        #Fun
+        </li>
+        <div id=""></div>
+        </li>
+        <li
+          class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base"
+        >#Siri
+        </li>
+        <li
+          class="border rounded-[50px] border-[#999] px-[10px] py-[5px] text-sm md:text-base"
+        >
+        #Jarvis
+        </li>
+      </ul>
+    </div>
+  </div>
+             <div
+        class="w-[2px] hidden sm:block bg-[#1788ae] absolute top-0 bottom-0 left-1/2 -translate-x-1/2"
+      ></div>
+    </section>
+
+    <section class="max-w-screen-xl mx-auto pb-12">
+      <h2
+        class="text-3xl sm:text-[40px] bg-[#111] sm:w-max relative z-10 font-bold px-4 py-2 mx-auto text-center text-[#1788ae] sm:border-2 border-[#1788ae] rounded-md"
+      >
+        Certification & Achievements
+      </h2>
+      <div class="swiper mySwiper !py-14">
+        <div class="swiper-wrapper items-center">
+          <div class="swiper-slide px-4">
+            <div
+              class="flex flex-col md:flex-row w-full md:max-w-[800px] items-center rounded-lg p-9 shadow-[0_0px_50px_rgba(59,130,246,0.6)] cursor-grab"
+            >
+
+            <div class="flex flex-col items-center">
+              <!-- Image -->
+              <img
+                class="shrink-0 w-[120px] h-[120px] md:w-[180px] md:h-[180px] rounded-full drop-shadow-[0_0px_80px_rgba(59,130,246,1)]"
+                src="./coursera.png"
+                alt="Coursera Logo"
+              />
+              <!-- Button below the image -->
+              <a
+                href="./Coursera_Certificate.pdf"
+                target="_blank"
+                class="mt-4 inline-block bg-[#1788ae] hover:bg-[#0d6e91] text-white text-sm md:text-base font-bold py-2 px-4 rounded-md shadow-md transition-colors duration-300"
+              >
+                Check Certificate
+              </a>
+            </div>
+
+              <div
+                class="testimonial-text ml-6 text-left pt-6 md:pt-16 relative"
+              >
+                <p class="text-sm md:text-base mb-2">
+  “Coursera Specialization in Data Science by Imperial College of London (2025). Successfully completed all modules with distinction, demonstrating strong expertise in data wrangling, exploratory analysis, and statistical modeling using Python.”
+</p>
+
+                <h2
+                  class="text-right text-[#459bd5] font-bold text-2xl md:text-4xl"
+                >
+                  COURSERA
+                </h2>
+                <h5 class="text-right text-[#459bd5] text-base md:text-lg">
+                 Mathematics for Machine Learning
+                </h5>
+              </div>
+            </div>
+          </div>
+
+          
+          <div class="swiper-slide px-4">
+            <div
+              class="flex flex-col md:flex-row max-w-[800px] items-center rounded-lg p-9 shadow-[0_0px_50px_rgba(59,130,246,0.6)] cursor-grab"
+            >
+              <img
+                class="shrink-0 w-[120px] h-[120px] md:w-[180px] md:h-[180px] rounded-full drop-shadow-[0_0px_80px_rgba(59,130,246,1)]"
+                src="./assets/images/placeholder.jpg"
+                alt=""
+              />
+              <div
+                class="testimonial-text ml-6 text-left pt-6 md:pt-16 relative"
+              >
+                <p class="text-sm md:text-base mb-2">
+                  "This section for certificates is currently in progress. These can be updated with course details and links as certificates are earned."  </p>
+                <h2
+                  class="text-right text-[#459bd5] font-bold text-2xl md:text-4xl"
+                >
+                Course Title
+                </h2>
+                <h5 class="text-right text-[#459bd5] text-base md:text-lg">
+                  Status: Ongoing
+                </h5>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide px-4">
+            <div
+              class="flex flex-col md:flex-row max-w-[800px] items-center rounded-lg p-9 shadow-[0_0px_50px_rgba(59,130,246,0.6)] cursor-grab"
+            >
+              <img
+                class="shrink-0 w-[120px] h-[120px] md:w-[180px] md:h-[180px] rounded-full drop-shadow-[0_0px_80px_rgba(59,130,246,1)]"
+                src="./assets/images/placeholder.jpg"
+                alt="testimonial 3"
+              />
+              <div
+                class="testimonial-text ml-6 text-left pt-6 md:pt-16 relative"
+              >
+                <p class="text-sm md:text-base mb-2">
+                 "This section for certificates is currently in progress. These can be updated with course details and links as certificates are earned."   </p>
+                <h2
+                  class="text-right text-[#459bd5] font-bold text-2xl md:text-4xl"
+                >
+                  Course Title
+                </h2>
+                <h5 class="text-right text-[#459bd5] text-base md:text-lg">
+                  Status: Ongoing
+                </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </section>
+    
+    <section class="max-w-screen-xl mx-auto px-4 pb-12"> 
+      <h2 class="text-3xl sm:text-[40px] bg-[#111] relative z-10 font-bold px-4 py-2 w-max mx-auto text-center text-[#1788ae] sm:border-2 border-[#1788ae] rounded-md">
+        Let's Connect
+      </h2>
+      <div class="flex flex-col md:flex-row items-center mt-10">
+        <div class="w-full">
+          <img src="./contact-me.svg" alt="phone" />
+        </div>
+        <form class="w-full" action="https://formspree.io/f/xeojblql" method="POST">
+          <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+          <div class="relative mb-4">
+            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+              <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
+              </svg>
+            </div>
+            <input type="text" id="name" name="name" class="bg-gray-50 border-2 outline-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#1788ae] focus:border-[#1788ae] block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" placeholder="Enter your name" required />
+          </div>
+          <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Message</label>
+          <div class="relative mb-4">
+            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none"></div>
+            <textarea id="message" name="message" rows="8" class="bg-gray-50 border-2 outline-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#1788ae] focus:border-[#1788ae] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" required></textarea>
+          </div>
+          <button type="submit" class="w-full text-white bg-[#1788ae] hover:bg-[#1280a4] focus:ring-4 focus:ring-[#4489a0] font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none">Send</button>
+        </form>
+      </div>
+    </section>
+    
+    
+
+            <!-- Adjusted Path to make it look like a V -->
+            <path
+                d="M110 50L203 300L296 50"
+                stroke="#1F2667"
+                stroke-opacity="0.9"
+                stroke-width="16"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            ></path>
+            <path
+                d="M110 50L203 300L296 50"
+                stroke="url(#paint0_linear)"
+                stroke-width="16"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            ></path>
+            <defs>
+                <linearGradient
+                    id="paint0_linear"
+                    x1="205.549"
+                    y1="20.0169"
+                    x2="204.338"
+                    y2="342.461"
+                    gradientUnits="userSpaceOnUse"
+                >
+                    <stop stop-color="#1595B6"></stop>
+                    <stop offset="1" stop-color="#1595B6" stop-opacity="0"></stop>
+                </linearGradient>
+            </defs>
+        </svg>
+    </div>
+    
+      <ul class="mx-auto flex items-center justify-center gap-6 text-[#b0b2c3]">
+        <li>
+          <a href="https://www.linkedin.com/in/vibhor-roy-8aa777214/" target="_blank">
+            <svg
+              class="w-5 hover:text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 448 512"
+            >
+              <path
+                fill="currentColor"
+                d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z"
+              ></path>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://x.com/RahulKu60935595" target="_blank">
+            <svg
+              class="w-5 hover:text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"
+            >
+              <path
+                fill="currentColor"
+                d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"
+              ></path>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.instagram.com/vibhor4893/">
+            <svg
+              class="w-5 hover:text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 448 512"
+            >
+              <path
+                fill="currentColor"
+                d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"
+              ></path>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="mailto:vibhorriy60@gmail.com" target="_blank">
+            <svg
+              class="w-5 hover:text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"
+            >
+              <path
+                fill="currentColor"
+                d="M64 112c-8.8 0-16 7.2-16 16v22.1L220.5 291.7c20.7 17 50.4 17 71.1 0L464 150.1V128c0-8.8-7.2-16-16-16H64zM48 212.2V384c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V212.2L322 328.8c-38.4 31.5-93.7 31.5-132 0L48 212.2zM0 128C0 92.7 28.7 64 64 64H448c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128z"
+              ></path>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.youtube.com/channel/UCbkkVfL7GaM_oGoOwbZrj3Q/community?pvf=CAI%253D">
+            <svg
+              class="w-5 hover:text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 576 512"
+              fill="currentColor"
+            >
+              <path
+                d="M549.7 124.1c-6.3-23.7-24.8-42.3-48.3-48.6C458.8 64 288 64 288 64S117.2 64 74.6 75.5c-23.5 6.3-42 24.9-48.3 48.6-11.4 42.9-11.4 132.3-11.4 132.3s0 89.4 11.4 132.3c6.3 23.7 24.8 41.5 48.3 47.8C117.2 448 288 448 288 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zm-317.5 213.5V175.2l142.7 81.2-142.7 81.2z"
+              ></path>
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </footer>
+
+      <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+      var swiper = new Swiper(".mySwiper", {
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.12.0/matter.min.js"></script>
+    <script src="https://cdn/jsdelivr.net/npm/matter-wrap@0.2.0/build/matter-wrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/matter-attractors@0.1.6/build/matter-attractors.min.js"></script>
+  </body>
+</html>
